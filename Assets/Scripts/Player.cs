@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,14 +8,19 @@ public class Player : SingletonMonoBehaviour<Player> {
 	internal Dictionary<string, bool> commandsUsed = new Dictionary<string, bool>();
 	Rigidbody rb;
 	bool started; // For won't mess button press
+	bool crouched;
+	float initialScaleY;
 
-	const float SPEED = 5f;
+	public const float INITIAL_SETUP_TIME = 0.6f;
+	const float CROUCH_SCALE = 0.3f;
+	const float SPEED = 10f;
 
 	void Awake () {
 		rb = GetComponent<Rigidbody>();
-		foreach(var s in new[] {"Fire1","Fire2", "Left", "Right", "Up", "Down" })
+		initialScaleY = transform.localScale.y;
+		foreach (var s in new[] {"Fire1","Fire2", "Left", "Right", "Up", "Down" })
 			commandsUsed.Add(s, false);
-		this.Invoke(new WaitForSeconds(0.6f), () => started = true);
+		this.Invoke(new WaitForSeconds(INITIAL_SETUP_TIME), () => started = true);
 	}
 	
 	void Update () {
@@ -32,8 +38,18 @@ public class Player : SingletonMonoBehaviour<Player> {
 			}
 			rb.MovePosition(rb.position + newHorizonInput * Time.deltaTime * SPEED * Vector3.right); //TODO redo
 		}
-		if (GetButtonDownValid("Up"))
+		if (!crouched && GetButtonDownValid("Up"))
 			rb.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
+
+		if (GetButtonDownValid("Down")) {
+			crouched = true;
+			transform.DOScaleY(CROUCH_SCALE, 0.4f).SetEase(Ease.OutSine);
+		}
+		if (crouched && Input.GetButtonUp("Down")) {
+			crouched = false;
+			DOTween.Kill(transform);
+			transform.DOScaleY(initialScaleY, 0.6f).SetEase(Ease.InSine);
+		}
 
 		if (Input.GetButton("Jump"))
 			GameManager.I.ResetStage();
