@@ -53,3 +53,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 1827061441558412, guid: c52c0966327d7414796ac8c196751436,
     type: 2}
+  canvasPrefab: {fileID: 1062614980014696, guid: 825247b83e08e88429555bbdc9761950,
+    type: 2}
