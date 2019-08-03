@@ -23,6 +23,10 @@ public class PingPongEnemy : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		var player = other.GetComponentInParent<Player>();
 		if (player != null)
-			player.Die();
+			player.Destroy();
+	}
+
+	public void Destroy() {
+		Destroy(gameObject);
 	}
 }

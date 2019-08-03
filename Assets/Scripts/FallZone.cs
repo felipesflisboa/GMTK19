@@ -6,6 +6,6 @@ public class FallZone : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		var player = other.GetComponentInParent<Player>();
 		if (player!=null)
-			player.Die();
+			player.Destroy();
 	}
 }

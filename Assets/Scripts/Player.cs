@@ -5,6 +5,8 @@ using UnityEngine;
 
 //TODO remove singleton
 public class Player : SingletonMonoBehaviour<Player> {
+	public GameObject missilePrefab;
+
 	internal Dictionary<string, bool> commandsUsed = new Dictionary<string, bool>();
 	Rigidbody rb;
 	bool started; // For won't mess button press
@@ -51,6 +53,10 @@ public class Player : SingletonMonoBehaviour<Player> {
 			transform.DOScaleY(initialScaleY, 0.6f).SetEase(Ease.InSine);
 		}
 
+		if (Input.GetButtonDown("Fire1")) {
+			Instantiate(missilePrefab, transform.position + transform.forward*0.5f, transform.rotation);
+		}
+
 		if (Input.GetButton("Jump"))
 			GameManager.I.ResetStage();
 
@@ -68,7 +74,7 @@ public class Player : SingletonMonoBehaviour<Player> {
 		return !commandsUsed[p] && Input.GetButtonDown(p);
 	}
 
-	public void Die() {
+	public void Destroy() {
 		GameManager.I.ResetStage();
 	}
 }

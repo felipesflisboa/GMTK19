@@ -8,7 +8,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	[SerializeField] GameObject playerPrefab;
 
 	void Awake() {
-		Instantiate(playerPrefab, Stage.I.startPoint.position, Stage.I.startPoint.rotation);
+		Instantiate(playerPrefab, Stage.I.startPoint.position, Quaternion.Euler(Vector3.up*90));
 		Camera.main.gameObject.AddComponent<CameraController>();
 	}
 
