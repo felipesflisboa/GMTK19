@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : SingletonMonoBehaviour<Player> {
 	internal Dictionary<string, bool> commandsUsed = new Dictionary<string, bool>();
 	Rigidbody rb;
+	bool started; // For won't mess button press
 
 	const float SPEED = 5f;
 
@@ -13,9 +14,12 @@ public class Player : SingletonMonoBehaviour<Player> {
 		rb = GetComponent<Rigidbody>();
 		foreach(var s in new[] {"Fire1","Fire2", "Left", "Right", "Up", "Down" })
 			commandsUsed.Add(s, false);
+		this.Invoke(new WaitForSeconds(0.6f), () => started = true);
 	}
 	
 	void Update () {
+		if (!started)
+			return;
 		if (GetButtonValid("Left") ^ GetButtonValid("Right")) {
 			float newHorizonInput = 0f;
 			if (GetButtonValid("Left")) {
