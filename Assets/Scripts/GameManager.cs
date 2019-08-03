@@ -8,5 +8,10 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 
 	void Awake () {
 		Instantiate(playerPrefab, Stage.I.startPoint.position, Stage.I.startPoint.rotation);
+		Camera.main.gameObject.AddComponent<CameraController>();
+	}
+
+	public void ResetStage() {
+		UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
 	}
 }
