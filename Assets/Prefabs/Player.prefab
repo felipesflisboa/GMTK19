@@ -244,6 +244,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   missilePrefab: {fileID: 1169577150649586, guid: 5b0c57f8b29f82a4a8b263bdd3c2b0a8,
     type: 2}
+  bombPrefab: {fileID: 1854054512786434, guid: bd0e4d6f3df7a6440b064928f7df53bd, type: 2}
 --- !u!136 &136406569503130682
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -6,6 +6,7 @@ using UnityEngine;
 //TODO remove singleton
 public class Player : SingletonMonoBehaviour<Player> {
 	public GameObject missilePrefab;
+	public GameObject bombPrefab;
 
 	internal Dictionary<string, bool> commandsUsed = new Dictionary<string, bool>();
 	Rigidbody rb;
@@ -56,6 +57,10 @@ public class Player : SingletonMonoBehaviour<Player> {
 		if (GetButtonDownValid("Fire1")) {
 			rb.AddForce(-transform.forward * 3, ForceMode.VelocityChange);
 			Instantiate(missilePrefab, transform.position + transform.forward*0.5f, transform.rotation);
+		}
+
+		if (GetButtonDownValid("Fire2")) {
+			Instantiate(bombPrefab, transform.position + Vector3.down * 0.3f, Quaternion.identity);
 		}
 
 		if (Input.GetButton("Jump"))
