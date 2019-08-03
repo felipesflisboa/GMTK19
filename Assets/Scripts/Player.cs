@@ -53,7 +53,8 @@ public class Player : SingletonMonoBehaviour<Player> {
 			transform.DOScaleY(initialScaleY, 0.6f).SetEase(Ease.InSine);
 		}
 
-		if (Input.GetButtonDown("Fire1")) {
+		if (GetButtonDownValid("Fire1")) {
+			rb.AddForce(-transform.forward * 3, ForceMode.VelocityChange);
 			Instantiate(missilePrefab, transform.position + transform.forward*0.5f, transform.rotation);
 		}
 
