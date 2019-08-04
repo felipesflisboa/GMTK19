@@ -55,13 +55,22 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	}
 
 	public void LoadNextStage() {
+		if(SceneManager.GetActiveScene().name == "StageH") {
+			int lastScore = Mathf.RoundToInt(TimeRemaining * 1000);
+			var slt = new ScoreListTimed(); //TODO redo
+			slt.AddScore(lastScore);
+			slt.Save();
+			ScoreListTimedDrawer.lastScore = lastScore;
+			LoadInitialScreen();
+			return;
+		}
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 	}
 
 	public void LoadInitialScreen() {
 		SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
 		SceneManager.MoveGameObjectToScene(FindObjectOfType<CanvasController>().gameObject, SceneManager.GetActiveScene());
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene("MainMenu");
 	}
 
 	void Update() {
