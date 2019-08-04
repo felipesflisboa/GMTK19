@@ -11,6 +11,7 @@ public class Player : SingletonMonoBehaviour<Player> {
 	internal Dictionary<string, bool> commandsUsed = new Dictionary<string, bool>();
 	Rigidbody rb;
 	bool started; // For won't mess button press
+	bool resetting; // For won't mess button press
 	bool crouched;
 	float initialScaleY;
 
@@ -26,7 +27,7 @@ public class Player : SingletonMonoBehaviour<Player> {
 		this.Invoke(new WaitForSeconds(INITIAL_SETUP_TIME), () => started = true);
 	}
 	
-	void Update () {
+	void Update () {			
 		if (!started)
 			return;
 

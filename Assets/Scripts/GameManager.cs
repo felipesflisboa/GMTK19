@@ -8,6 +8,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	public GameObject playerPrefab;
 	[SerializeField] GameObject canvasPrefab;
 	internal float timeElapsed;
+	bool resetting;
 
 	const float TIME_LIMIT = 60;
 
@@ -46,9 +47,19 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	}
 
 	public void ResetStage() {
+		/*
+		if(!resetting)
+			StartCoroutine(ResetStageRoutine());
+		*/
 		timeElapsed = Stage.I.startTime;
 		RestartStage();
 	}
+
+	/*
+	IEnumerator ResetStageRoutine() {
+		resetting = true;
+	}
+	*/
 
 	public void RestartStage() {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 114615199655282732}
   - component: {fileID: 114984914830666914}
   m_Layer: 5
-  m_Name: imgFire3
+  m_Name: imgRestart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1077,10 +1077,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eade74cafaa54c8448d13eba3735dc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  command: Fire3
-  availableSprite: {fileID: 21300000, guid: 0cfc8e5f3c0915a4ba80938defb83bab, type: 3}
-  activeSprite: {fileID: 21300000, guid: afe9d781b6a3f9a45bbc0d4902b33eec, type: 3}
-  unavailableSprite: {fileID: 21300000, guid: 163c8c27ac667cf4b85f210146c862f8, type: 3}
+  command: Jump
+  availableSprite: {fileID: 21300000, guid: 64d3aa2f911005e41a44116b8a39af76, type: 3}
+  activeSprite: {fileID: 21300000, guid: cbf7ec76f5d0ae54f8c74920d487b806, type: 3}
+  unavailableSprite: {fileID: 21300000, guid: cbf7ec76f5d0ae54f8c74920d487b806, type: 3}
 --- !u!222 &222055773491372370
 CanvasRenderer:
   m_ObjectHideFlags: 1
