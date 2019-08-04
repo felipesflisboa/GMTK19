@@ -25,6 +25,7 @@ public class Player : SingletonMonoBehaviour<Player> {
 	public const float INITIAL_SETUP_TIME = 0.6f;
 	const float SPEED = 10f;
 	const string ANIMATOR_CROUCH_KEY = "Crouching";
+	const string ANIMATOR_RUNNING_KEY = "Running";
 
 	void Awake () {
 		rb = GetComponent<Rigidbody>();
@@ -60,6 +61,9 @@ public class Player : SingletonMonoBehaviour<Player> {
 				rb.rotation = Quaternion.Euler(Vector3.up * 90);
 			}
 			rb.MovePosition(rb.position + newHorizonInput * Time.deltaTime * SPEED * Vector3.right); //TODO redo
+			animator.SetBool(ANIMATOR_RUNNING_KEY, true);
+		} else {
+			animator.SetBool(ANIMATOR_RUNNING_KEY, false);
 		}
 		if (!crouching && GetButtonDownValid("Up"))
 			rb.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
