@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9537e8169b1728f489a90e6d0ecf0bf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 1658128341512412, guid: 3ebbaaea851c2aa4c99161850bc12518,
+    type: 2}
   axis: 0
   speed: 0
   distance: 0

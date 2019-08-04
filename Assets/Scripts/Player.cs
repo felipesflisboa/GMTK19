@@ -7,6 +7,7 @@ using UnityEngine;
 public class Player : SingletonMonoBehaviour<Player> {
 	public GameObject missilePrefab;
 	public GameObject bombPrefab;
+	public GameObject sparkPrefab;
 	public Transform missileShootPoint;
 	public Transform bombShootPoint;
 	public Collider mainCollider;
@@ -32,7 +33,7 @@ public class Player : SingletonMonoBehaviour<Player> {
 		animator = GetComponentInChildren<Animator>();
 		// initialMainColliderScaleY = mainCollider.transform.localScale.y;
 		// initialMainColliderPosY = mainCollider.transform.localPosition.y;
-		foreach (var s in new[] {"Fire1","Fire2", "Fire3", "Jump", "Submit", "Left", "Right", "Up", "Down" })
+		foreach (var s in new[] {"Fire1","Fire2", "Jump", "Submit", "Left", "Right", "Up", "Down" })
 			commandsUsed.Add(s, false);
 		this.Invoke(new WaitForSeconds(INITIAL_SETUP_TIME), () => started = true);
 		mainCollider.gameObject.SetActive(true); //TODO redo
@@ -102,9 +103,12 @@ public class Player : SingletonMonoBehaviour<Player> {
 			GameManager.I.ResetStage();
 
 		//TODO look alloc
-		foreach (var k in new List<string>(commandsUsed.Keys))
-			if (Input.GetButtonUp(k))
+		foreach (var k in new List<string>(commandsUsed.Keys)) {
+			if (Input.GetButtonUp(k) && !commandsUsed[k]) {
 				commandsUsed[k] = true;
+				Destroy(Instantiate(sparkPrefab, transform.position, Quaternion.identity), 5f);
+			}
+		}
 	}
 
 	bool GetButtonValid(string p) {

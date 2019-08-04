@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PingPongEnemy : MonoBehaviour {
+	[SerializeField] GameObject explosionPrefab;
 	[SerializeField] int axis;
 	[SerializeField] float speed;
 	[SerializeField] float distance;
@@ -27,6 +28,7 @@ public class PingPongEnemy : MonoBehaviour {
 	}
 
 	public void Destroy() {
+		Instantiate(explosionPrefab, transform.position, Quaternion.identity);
 		Destroy(gameObject);
 	}
 }

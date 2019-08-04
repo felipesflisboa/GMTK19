@@ -69,6 +69,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 		if(SceneManager.GetActiveScene().name == "StageH") {
 			int lastScore = Mathf.RoundToInt(TimeRemaining * 1000);
 			var slt = new ScoreListTimed(); //TODO redo
+			slt.Load();
 			slt.AddScore(lastScore);
 			slt.Save();
 			ScoreListTimedDrawer.lastScore = lastScore;
