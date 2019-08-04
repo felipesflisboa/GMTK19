@@ -1382,7 +1382,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 857b9359ef17a384ab7fda595a6bcc7c, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 1b41c45ae59948a408b50b54d808a234, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1589,7 +1589,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1553527546
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1835,12 +1835,12 @@ MonoBehaviour:
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 4
-    m_MaxSize: 48
+    m_MinSize: 0
+    m_MaxSize: 52
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: 'Art/Design - Igor Sella
@@ -1850,7 +1850,11 @@ MonoBehaviour:
 
     DOTween - Demigiant
 
-    Gamelogic Extensions - Gamelogic'
+    Gamelogic Extensions - Gamelogic
+
+    "Dark Fog" Music - Kevin MacLeod (incompetech com)
+
+    "Shiny Tech" Music - Kevin MacLeod (incompetech com)'
 --- !u!222 &1684722685
 CanvasRenderer:
   m_ObjectHideFlags: 0
