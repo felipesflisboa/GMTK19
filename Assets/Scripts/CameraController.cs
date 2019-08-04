@@ -15,11 +15,13 @@ public class CameraController : MonoBehaviour {
 		float delay = 0.1f; //TODO
 		transform.DOMove(Player.I.transform.position + Vector3.back * 3.7f, Player.INITIAL_SETUP_TIME- delay).From().SetEase(Ease.InSine).SetDelay(0.1f);
 		transform.DORotateQuaternion(Quaternion.identity, Player.INITIAL_SETUP_TIME).From().SetEase(Ease.InSine);
+		RenderSettings.fog = true;
 	}
 
-	void Update () {
-		if(Stage.I.cameraFollow)
-			transform.position = transform.position.WithX(Mathf.Lerp(transform.position.x, Player.I.transform.position.x, 5*Time.deltaTime));
-
+	void LateUpdate() {
+		if (Stage.I.cameraFollow)
+			transform.position = transform.position.WithX(Mathf.Lerp(transform.position.x, Player.I.transform.position.x, 5 * Time.deltaTime));
+		RenderSettings.fogStartDistance = Player.I.transform.position.z - transform.position.z - 6;
+		RenderSettings.fogEndDistance = RenderSettings.fogStartDistance+11;
 	}
 }
