@@ -453,7 +453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eade74cafaa54c8448d13eba3735dc8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  command: Jump
+  command: Submit
   availableSprite: {fileID: 21300000, guid: dd5fbf9dbb58f084d95d4e097069ffa7, type: 3}
   activeSprite: {fileID: 21300000, guid: 496ad02ba92a6cf4187e23649346cedc, type: 3}
   unavailableSprite: {fileID: 21300000, guid: 3e60c7204b1fa38499de888f81ecca89, type: 3}

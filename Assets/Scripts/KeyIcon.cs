@@ -16,10 +16,11 @@ public class KeyIcon : MonoBehaviour {
 		icon = GetComponent<Image>();
 	}
 	
-	void Update () {
+	void LateUpdate () {
 		if (Player.I.commandsUsed[command]) {
 			icon.sprite = unavailableSprite;
-		}else if (activeSprite!=null && Input.GetButton(command)) {
+			//TODO extends
+		}else if ((activeSprite!=null && Input.GetButton(command) || (command=="Submit" && Time.timeScale==0))) {
 			icon.sprite = activeSprite;
 		} else {
 			icon.sprite = availableSprite;

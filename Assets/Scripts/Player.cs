@@ -21,7 +21,7 @@ public class Player : SingletonMonoBehaviour<Player> {
 	void Awake () {
 		rb = GetComponent<Rigidbody>();
 		initialScaleY = transform.localScale.y;
-		foreach (var s in new[] {"Fire1","Fire2", "Fire3", "Jump", "Left", "Right", "Up", "Down" })
+		foreach (var s in new[] {"Fire1","Fire2", "Fire3", "Jump", "Submit", "Left", "Right", "Up", "Down" })
 			commandsUsed.Add(s, false);
 		this.Invoke(new WaitForSeconds(INITIAL_SETUP_TIME), () => started = true);
 	}
@@ -29,6 +29,14 @@ public class Player : SingletonMonoBehaviour<Player> {
 	void Update () {
 		if (!started)
 			return;
+
+		if (GetButtonDownValid("Submit")) {
+			Time.timeScale = Time.timeScale == 0 ? 1 : 0;
+		}
+
+		if (Time.timeScale == 0)
+			return;
+
 		if (GetButtonValid("Left") ^ GetButtonValid("Right")) {
 			float newHorizonInput = 0f;
 			if (GetButtonValid("Left")) {

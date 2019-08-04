@@ -58,7 +58,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 	}
 
+	public void LoadInitialScreen() {
+		SceneManager.MoveGameObjectToScene(gameObject, SceneManager.GetActiveScene());
+		SceneManager.MoveGameObjectToScene(FindObjectOfType<CanvasController>().gameObject, SceneManager.GetActiveScene());
+		SceneManager.LoadScene(0);
+	}
+
 	void Update() {
 		timeElapsed += Time.deltaTime;
+		if (TimeEnded)
+			LoadInitialScreen();
 	}
 }
