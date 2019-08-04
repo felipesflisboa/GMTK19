@@ -132,7 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075396f3f73c119458139fbfc024980f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1827061441558412, guid: c52c0966327d7414796ac8c196751436,
+  playerPrefab: {fileID: 1726223069863982, guid: c52c0966327d7414796ac8c196751436,
     type: 2}
   canvasPrefab: {fileID: 1062614980014696, guid: 825247b83e08e88429555bbdc9761950,
     type: 2}

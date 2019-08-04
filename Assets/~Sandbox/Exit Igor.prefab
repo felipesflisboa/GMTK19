@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 33970966640972018}
   - component: {fileID: 23006086197191146}
   m_Layer: 0
-  m_Name: Exit
+  m_Name: Exit Igor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -7,24 +7,35 @@ using UnityEngine;
 public class Player : SingletonMonoBehaviour<Player> {
 	public GameObject missilePrefab;
 	public GameObject bombPrefab;
+	public Transform missileShootPoint;
+	public Transform bombShootPoint;
+	public Collider mainCollider;
+	public Collider crouchingCollider;
 
 	internal Dictionary<string, bool> commandsUsed = new Dictionary<string, bool>();
-	Rigidbody rb;
 	bool started; // For won't mess button press
 	bool resetting; // For won't mess button press
-	bool crouched;
-	float initialScaleY;
+	bool crouching;
+	//float initialMainColliderScaleY; //TODO rename
+	//float initialMainColliderPosY;
+
+	Rigidbody rb;
+	Animator animator;
 
 	public const float INITIAL_SETUP_TIME = 0.6f;
-	const float CROUCH_SCALE = 0.3f;
 	const float SPEED = 10f;
+	const string ANIMATOR_CROUCH_KEY = "Crouching";
 
 	void Awake () {
 		rb = GetComponent<Rigidbody>();
-		initialScaleY = transform.localScale.y;
+		animator = GetComponentInChildren<Animator>();
+		// initialMainColliderScaleY = mainCollider.transform.localScale.y;
+		// initialMainColliderPosY = mainCollider.transform.localPosition.y;
 		foreach (var s in new[] {"Fire1","Fire2", "Fire3", "Jump", "Submit", "Left", "Right", "Up", "Down" })
 			commandsUsed.Add(s, false);
 		this.Invoke(new WaitForSeconds(INITIAL_SETUP_TIME), () => started = true);
+		mainCollider.gameObject.SetActive(true); //TODO redo
+		crouchingCollider.gameObject.SetActive(false);
 	}
 	
 	void Update () {			
@@ -50,26 +61,37 @@ public class Player : SingletonMonoBehaviour<Player> {
 			}
 			rb.MovePosition(rb.position + newHorizonInput * Time.deltaTime * SPEED * Vector3.right); //TODO redo
 		}
-		if (!crouched && GetButtonDownValid("Up"))
+		if (!crouching && GetButtonDownValid("Up"))
 			rb.AddForce(Vector3.up * 10, ForceMode.VelocityChange);
 
 		if (GetButtonDownValid("Down")) {
-			crouched = true;
-			transform.DOScaleY(CROUCH_SCALE, 0.4f).SetEase(Ease.OutSine);
+			//TODO redo in method
+			crouching = true;
+			animator.SetBool(ANIMATOR_CROUCH_KEY, true);
+			mainCollider.gameObject.SetActive(false);
+			crouchingCollider.gameObject.SetActive(true);
+			//TODO redo
+			//mainCollider.transform.DOScaleY(CROUCH_SCALE, 0.4f).SetEase(Ease.OutSine);
+			//mainCollider.transform.DOLocalMoveY(initialMainColliderPosY - (initialMainColliderScaleY - CROUCH_SCALE)*2/3f, 0.4f).SetEase(Ease.OutSine);
 		}
-		if (crouched && Input.GetButtonUp("Down")) {
-			crouched = false;
-			DOTween.Kill(transform);
-			transform.DOScaleY(initialScaleY, 0.6f).SetEase(Ease.InSine);
+		if (crouching && Input.GetButtonUp("Down")) {
+			crouching = false;
+			animator.SetBool(ANIMATOR_CROUCH_KEY, false);
+			mainCollider.gameObject.SetActive(true);
+			crouchingCollider.gameObject.SetActive(false);
+			//DOTween.Kill(mainCollider.transform);
+			//TODO redo
+			//mainCollider.transform.DOScaleY(initialMainColliderScaleY, 0.6f).SetEase(Ease.InSine);
+			//mainCollider.transform.DOLocalMoveY(initialMainColliderPosY, 0.6f).SetEase(Ease.InSine);
 		}
 
 		if (GetButtonDownValid("Fire1")) {
 			rb.AddForce(-transform.forward * 3, ForceMode.VelocityChange);
-			Instantiate(missilePrefab, transform.position + transform.forward*0.5f, transform.rotation);
+			Instantiate(missilePrefab, missileShootPoint.position, missileShootPoint.rotation);
 		}
 
 		if (GetButtonDownValid("Fire2")) {
-			Instantiate(bombPrefab, transform.position + Vector3.down * 0.3f, Quaternion.identity);
+			Instantiate(bombPrefab, bombShootPoint.position, Quaternion.identity);
 		}
 
 		if (Input.GetButton("Jump"))
