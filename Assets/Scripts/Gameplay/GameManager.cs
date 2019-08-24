@@ -76,6 +76,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 			LoadInitialScreen();
 			return;
 		}
+		canvasController.ClearTips();
 		SceneManager.LoadScene(stageData.GetNext(SceneManager.GetActiveScene().path).ScenePath);
 	}
 

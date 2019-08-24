@@ -7,6 +7,16 @@ public class Stage : MonoBehaviour {
 	public bool cameraFollow;
 	public float startTime { get; private set; }
 
+	[Header("Tips")]
+	public Sprite[] tipSpriteArray = new Sprite[0];
+	public float secondsRemainingToShowTips;
+
+	public bool CanShowTips {
+		get {
+			return tipSpriteArray.Length > 0 && secondsRemainingToShowTips > GameManager.I.RemainingTime;
+		}
+	}
+
 	public void Awake() {
 		GameManager.I.InitializeStage(this);
 		startTime = GameManager.I.elapsedTime;
