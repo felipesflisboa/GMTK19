@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 /// <summary>
 /// Sample option class.
@@ -7,18 +8,34 @@ using System.Collections;
 /// </summary>
 public class MenuManager : SingletonMonoBehaviour<MenuManager> {
 	public enum Option{
-		None=0,Title,Info,HighScores
+		None=0,Title,Info,HighScores,Loading,GameOver
 	}
-	[SerializeField] AudioClip seClick;
+
+	public static Option nextInitialScreen = Option.Title;
+
 	[SerializeField] StageData stageData;
+	[SerializeField] AudioClip seClick;
 	Option currentPanelOption;
 	MenuPanel[] panelArray;
-	Timer clickCooldownTimer;
+
+	string Version { //remove
+		get {
+			return "1.1";
+		}
+	}
+
+	void Awake() {
+		panelArray = GetComponentsInChildren<MenuPanel>(true);
+	}
 
 	void Start () {
-		clickCooldownTimer = new Timer(0.75f);
-		panelArray = GetComponentsInChildren<MenuPanel>(true);
-		EnablePanel(ScoreListTimedDrawer.lastScore == null ? Option.Title : Option.HighScores);
+		EnablePanel(nextInitialScreen);
+		//versionLabel.text = string.Format("V {0}", Application.version).Replace(".",";"); //remove
+		nextInitialScreen = Option.Title;
+	}
+
+	void OnEnable() {
+		StartCoroutine(ClickRoutine());
 	}
 
 	public void EnablePanel(Option panelOption){
@@ -34,31 +51,28 @@ public class MenuManager : SingletonMonoBehaviour<MenuManager> {
 	}
 
 #region Buttons
-	public void Play(){
+	public void GoToPlay(){
 		PlayClickSE();
 		ScoreListTimedDrawer.lastScore = null;
-		UnityEngine.SceneManagement.SceneManager.LoadScene(stageData.array[0].ScenePath);
+		EnablePanel(Option.Loading);
+		this.Invoke(new WaitForEndOfFrame(), ()=> UnityEngine.SceneManagement.SceneManager.LoadScene(stageData.array[0].ScenePath));
 	}
 
-	public void Info(){
+	public void GoToInfo(){
 		PlayClickSE();
 		EnablePanel(Option.Info);
 	}
 
-	public void HighScores(){
+	public void GoToHighScores(){
 		PlayClickSE();
 		EnablePanel(Option.HighScores);
 	}
-
-	public void Exit(){
-		PlayClickSE();
-		Application.Quit();
-	}
 #endregion
 
-	void Update(){
-		bool backToTitle = Input.GetButtonDown("Fire1") && currentPanelOption!=Option.Title && clickCooldownTimer.CheckAndUpdate();
-		if(backToTitle){
+	IEnumerator ClickRoutine(){
+		while (true) {
+			yield return new WaitForSeconds(0.75f);
+			yield return new WaitUntil(() => Input.GetButtonDown("Fire1") && !(new[] { Option.Title, Option.Loading }).Contains(currentPanelOption));
 			PlayClickSE();
 			EnablePanel(Option.Title);
 		}

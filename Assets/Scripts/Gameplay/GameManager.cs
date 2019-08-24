@@ -86,6 +86,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 		scoreList.AddScore(newMSTime);
 		scoreList.Save();
 		ScoreListTimedDrawer.lastScore = newMSTime;
+		MenuManager.nextInitialScreen = MenuManager.Option.HighScores;
 	}
 
 	public void LoadInitialScreen() {
@@ -96,8 +97,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 
 	void Update() {
 		elapsedTime += Time.deltaTime;
-		if (TimeEnded)
-			LoadInitialScreen();
+		if (TimeEnded) 
+			DoGameOver();
+	}
+
+	void DoGameOver() {
+		MenuManager.nextInitialScreen = MenuManager.Option.GameOver;
+		LoadInitialScreen();
 	}
 
 	public void TogglePause() {
