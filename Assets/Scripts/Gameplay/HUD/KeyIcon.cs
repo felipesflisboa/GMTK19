@@ -3,24 +3,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-//TODO require
+[RequireComponent(typeof(Image))]
 public class KeyIcon : MonoBehaviour {
 	[SerializeField] string command;
-	Image icon;
-
 	[SerializeField] Sprite availableSprite;
 	[SerializeField] Sprite activeSprite;
 	[SerializeField] Sprite unavailableSprite;
+	Image icon;
+
+	protected virtual bool Active {
+		get {
+			return activeSprite != null && Input.GetButton(command);
+		}
+	}
+
+	protected virtual bool Unavailable {
+		get {
+			return GameManager.I.player.commandHandler.HasUsed(command);
+		}
+	}
 
 	void Awake () {
 		icon = GetComponent<Image>();
 	}
 	
 	void LateUpdate () {
-		if (Player.I.commandsUsed[command]) {
+		RefreshSprite();
+	}
+
+	void RefreshSprite() {
+		if (Unavailable) {
 			icon.sprite = unavailableSprite;
-			//TODO extends
-		}else if ((activeSprite!=null && Input.GetButton(command) || (command=="Submit" && Time.timeScale==0))) {
+		} else if (Active) {
 			icon.sprite = activeSprite;
 		} else {
 			icon.sprite = availableSprite;

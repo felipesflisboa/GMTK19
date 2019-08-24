@@ -9,8 +9,12 @@ public class Bomb : MonoBehaviour {
 	
 	IEnumerator Start () {
 		yield return new WaitForSeconds(DURATION);
-		Instantiate(explosionPrefab, transform.position, transform.rotation);
+		CreateExplosion();
 		yield return new WaitForSeconds(0.1f);
 		Destroy(gameObject);
+	}
+
+	void CreateExplosion() {
+		Instantiate(explosionPrefab, transform.position, transform.rotation);
 	}
 }

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aafffb6da2b255b4896992d13713b008, type: 3}
+  m_Name: StageData
+  m_EditorClassIdentifier: 
+  array:
+  - sceneAsset: {fileID: 102900000, guid: c54184f96d45b284583c85cb978fbd8a, type: 3}
+    scenePath: Assets/Scenes/StageA.unity
+  - sceneAsset: {fileID: 102900000, guid: 487e970d79fdc214d8cb4f76d61fe344, type: 3}
+    scenePath: Assets/Scenes/StageB.unity
+  - sceneAsset: {fileID: 102900000, guid: 2611434f325286e4cac7ac76088eeb44, type: 3}
+    scenePath: Assets/Scenes/StageC.unity
+  - sceneAsset: {fileID: 102900000, guid: 59ac82361f691614e8c6862ee9ebb3b3, type: 3}
+    scenePath: Assets/Scenes/StageD.unity
+  - sceneAsset: {fileID: 102900000, guid: f7a7cb9b027add64f924905e233173a1, type: 3}
+    scenePath: Assets/Scenes/StageE.unity
+  - sceneAsset: {fileID: 102900000, guid: f2d600d57d0f2b94088a0d27683f4205, type: 3}
+    scenePath: Assets/Scenes/StageF.unity
+  - sceneAsset: {fileID: 102900000, guid: 7b59aebfc28a3514bb999a6d0d55d354, type: 3}
+    scenePath: Assets/Scenes/StageG.unity
+  - sceneAsset: {fileID: 102900000, guid: 2f7f9d75573b3a24d840b94893e5ec5c, type: 3}
+    scenePath: Assets/Scenes/StageH.unity

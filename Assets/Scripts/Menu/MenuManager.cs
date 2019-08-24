@@ -10,6 +10,7 @@ public class MenuManager : SingletonMonoBehaviour<MenuManager> {
 		None=0,Title,Info,HighScores
 	}
 	[SerializeField] AudioClip seClick;
+	[SerializeField] StageData stageData;
 	Option currentPanelOption;
 	MenuPanel[] panelArray;
 	Timer clickCooldownTimer;
@@ -40,7 +41,7 @@ public class MenuManager : SingletonMonoBehaviour<MenuManager> {
 	public void Play(){
 		PlayClickSE();
 		ScoreListTimedDrawer.lastScore = null;
-		UnityEngine.SceneManagement.SceneManager.LoadScene("StageA");
+		UnityEngine.SceneManagement.SceneManager.LoadScene(stageData.array[0].ScenePath);
 	}
 
 	public void Info(){

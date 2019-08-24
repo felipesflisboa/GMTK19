@@ -1973,6 +1973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seClick: {fileID: 8300000, guid: fdffc344830c1e6488291d9036b4622d, type: 3}
+  stageData: {fileID: 11400000, guid: 1061490e1f36982499ec812f1d1b1726, type: 2}
 --- !u!114 &2012571277
 MonoBehaviour:
   m_ObjectHideFlags: 0

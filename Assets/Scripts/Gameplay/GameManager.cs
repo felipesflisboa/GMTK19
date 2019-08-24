@@ -3,25 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//TODO HUD
 public class GameManager : SingletonMonoBehaviour<GameManager> {
-	public GameObject playerPrefab;
+	[SerializeField] GameObject playerPrefab;
 	[SerializeField] GameObject canvasPrefab;
-	internal float timeElapsed;
+	[SerializeField] StageData stageData;
+	public Stage currentStage { get; private set; }
+	public Player player { get; private set; }
+	public CanvasController canvasController { get; private set; }
+	internal float elapsedTime;
 	bool resetting;
 
-	const float TIME_LIMIT = 60;
+	public const float INITIAL_SETUP_TIME = 0.6f;
+	public const float TIME_LIMIT = 60;
 
-	//TODO reverse name
-	public float TimeRemaining {
+	public float RemainingTime {
 		get {
-			return TIME_LIMIT - timeElapsed;
+			return TIME_LIMIT - elapsedTime;
 		}
 	}
 
 	public float TimeRemainingClamped {
 		get {
-			return Mathf.Max(0, TimeRemaining);
+			return Mathf.Max(0, RemainingTime);
 		}
 	}
 
@@ -33,7 +36,13 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 
 	public bool TimeEnded {
 		get {
-			return TimeRemaining < 0;
+			return RemainingTime < 0;
+		}
+	}
+
+	public bool Paused {
+		get {
+			return Time.timeScale == 0;
 		}
 	}
 
@@ -43,40 +52,39 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 			return;
 		}
 		DontDestroyOnLoad(gameObject);
-		Instantiate(canvasPrefab);
+		canvasController = Instantiate(canvasPrefab).GetComponent<CanvasController>();
+	}
+
+	public void InitializeStage(Stage stage) {
+		currentStage = stage;
+		player = Instantiate(playerPrefab, currentStage.startPoint.position, Quaternion.Euler(Vector3.up * 90)).GetComponent<Player>();
+		Camera.main.gameObject.AddComponent<CameraController>();
 	}
 
 	public void ResetStage() {
-		/*
-		if(!resetting)
-			StartCoroutine(ResetStageRoutine());
-		*/
-		timeElapsed = Stage.I.startTime;
+		elapsedTime = currentStage.startTime;
 		RestartStage();
 	}
-
-	/*
-	IEnumerator ResetStageRoutine() {
-		resetting = true;
-	}
-	*/
 
 	public void RestartStage() {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
 	public void LoadNextStage() {
-		if(SceneManager.GetActiveScene().name == "StageH") {
-			int lastScore = Mathf.RoundToInt(TimeRemaining * 1000);
-			var slt = new ScoreListTimed(); //TODO redo
-			slt.Load();
-			slt.AddScore(lastScore);
-			slt.Save();
-			ScoreListTimedDrawer.lastScore = lastScore;
+		if(stageData.IsLast(SceneManager.GetActiveScene().path)) {
+			RefreshScoreList(Mathf.RoundToInt(RemainingTime * 1000));
 			LoadInitialScreen();
 			return;
 		}
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+		SceneManager.LoadScene(stageData.GetNext(SceneManager.GetActiveScene().path).ScenePath);
+	}
+
+	void RefreshScoreList(int newMSTime) {
+		ScoreListTimed scoreList = new ScoreListTimed();
+		scoreList.Load();
+		scoreList.AddScore(newMSTime);
+		scoreList.Save();
+		ScoreListTimedDrawer.lastScore = newMSTime;
 	}
 
 	public void LoadInitialScreen() {
@@ -86,8 +94,12 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	}
 
 	void Update() {
-		timeElapsed += Time.deltaTime;
+		elapsedTime += Time.deltaTime;
 		if (TimeEnded)
 			LoadInitialScreen();
+	}
+
+	public void TogglePause() {
+		Time.timeScale = Paused ? 1 : 0;
 	}
 }
