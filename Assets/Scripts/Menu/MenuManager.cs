@@ -17,12 +17,8 @@ public class MenuManager : SingletonMonoBehaviour<MenuManager> {
 
 	void Start () {
 		clickCooldownTimer = new Timer(0.75f);
-
 		panelArray = GetComponentsInChildren<MenuPanel>(true);
-
-		bool hasScore = ScoreListTimedDrawer.lastScore!=null;
-		Option newPanelOption = hasScore ? Option.HighScores : Option.Title;
-		EnablePanel(newPanelOption);
+		EnablePanel(ScoreListTimedDrawer.lastScore == null ? Option.Title : Option.HighScores);
 	}
 
 	public void EnablePanel(Option panelOption){

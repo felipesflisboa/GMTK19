@@ -8,11 +8,11 @@ public class CanvasController : MonoBehaviour {
 	[SerializeField] RectTransform tipRectTransform;
 	[SerializeField] Text timeLabel;
 	[SerializeField] Slider[] timeSliderArray;
-	List<Image> tipImageList = new List<Image>();
+	List<TipIcon> tipIconList = new List<TipIcon>();
 
 	public bool ShowingTips {
 		get {
-			return tipImageList.Count > 0;
+			return tipIconList.Count > 0;
 		}
 	}
 
@@ -40,26 +40,17 @@ public class CanvasController : MonoBehaviour {
 		}
 	}
 
-	public IEnumerator ShowTipsRoutine(Sprite[] tipSpriteArray) {
-		foreach (Sprite sprite in tipSpriteArray) {
-			Image image = Instantiate(tipPrefab, tipRectTransform).GetComponent<Image>();
-			image.color = Color.clear;
-			if (sprite != null) {
-				image.sprite = sprite;
-				tipImageList.Add(image);
-			}
-		}
-		//TODO destroy
-		foreach (Image image in tipImageList) {
-			for (int i = 0; i < 5; i++) {
-				if(image)
-					image.color = Color.clear;
-				yield return new WaitForSeconds(0.05f);
-				if (image)
-					image.color = Color.white;
-				yield return new WaitForSeconds(0.05f);
-			}
-		}
+	IEnumerator ShowTipsRoutine(Sprite[] tipSpriteArray) {
+		foreach (var sprite in tipSpriteArray)
+			tipIconList.Add(CreateTipIcon(sprite));
+		foreach (var tipIcon in tipIconList)
+			yield return tipIcon.StartCoroutine(tipIcon.PlayAnimation());
+	}
+
+	TipIcon CreateTipIcon(Sprite sprite) {
+		TipIcon ret = Instantiate(tipPrefab, tipRectTransform).GetComponent<TipIcon>();
+		ret.Setup(sprite);
+		return ret;
 	}
 
 	public void ClearTips() {
@@ -68,8 +59,8 @@ public class CanvasController : MonoBehaviour {
 
 	IEnumerator ClearTipsRoutine() {
 		yield return null; // For when loading another stage
-		foreach (Image image in tipImageList)
-			Destroy(image.gameObject);
-		tipImageList.Clear();
+		foreach (var tipIcon in tipIconList)
+			Destroy(tipIcon.gameObject);
+		tipIconList.Clear();
 	}
 }
