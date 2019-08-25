@@ -126,13 +126,12 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 515390266}
-  - component: {fileID: 515390267}
   m_Layer: 0
   m_Name: Blocks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &515390266
 Transform:
@@ -148,20 +147,6 @@ Transform:
   m_Father: {fileID: 554742518}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &515390267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 515390265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f4d2d5d66cb1bc428d9df5d3ad50872, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  definedColor: {r: 0.07586192, g: 0, b: 1, a: 0}
-  setInChildren: 1
-  totalTime: 0
 --- !u!1 &554742517
 GameObject:
   m_ObjectHideFlags: 0
@@ -210,6 +195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 641642369}
   cameraFollow: 0
+  tipSpriteArray: []
+  secondsRemainingToShowTips: 0
 --- !u!1 &627338702
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +213,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!23 &627338703
 MeshRenderer:
@@ -581,7 +568,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2084518182
 Transform:
@@ -681,7 +668,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2143580058
 Transform:

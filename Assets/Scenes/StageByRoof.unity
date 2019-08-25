@@ -804,6 +804,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPoint: {fileID: 641642369}
   cameraFollow: 0
+  tipSpriteArray: []
+  secondsRemainingToShowTips: 0
 --- !u!1 &627338702
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,15 +2016,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4411461924149494, guid: 6dce3b8277773844b9b866c295f6a268, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.98
+      value: -1.1
       objectReference: {fileID: 0}
     - target: {fileID: 4411461924149494, guid: 6dce3b8277773844b9b866c295f6a268, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 4
+      value: 4.25
       objectReference: {fileID: 0}
     - target: {fileID: 4411461924149494, guid: 6dce3b8277773844b9b866c295f6a268, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -26
+      value: -28
       objectReference: {fileID: 0}
     - target: {fileID: 4411461924149494, guid: 6dce3b8277773844b9b866c295f6a268, type: 2}
       propertyPath: m_LocalRotation.x
