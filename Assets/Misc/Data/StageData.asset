@@ -13,18 +13,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   array:
   - sceneAsset: {fileID: 102900000, guid: c54184f96d45b284583c85cb978fbd8a, type: 3}
-    scenePath: Assets/Scenes/StageA.unity
+    scenePath: Assets/Scenes/StageOneEnemy.unity
   - sceneAsset: {fileID: 102900000, guid: 487e970d79fdc214d8cb4f76d61fe344, type: 3}
-    scenePath: Assets/Scenes/StageB.unity
+    scenePath: Assets/Scenes/StageJumpAndDown.unity
   - sceneAsset: {fileID: 102900000, guid: 2611434f325286e4cac7ac76088eeb44, type: 3}
-    scenePath: Assets/Scenes/StageC.unity
-  - sceneAsset: {fileID: 102900000, guid: 59ac82361f691614e8c6862ee9ebb3b3, type: 3}
-    scenePath: Assets/Scenes/StageD.unity
+    scenePath: Assets/Scenes/StageTwoEnemies.unity
   - sceneAsset: {fileID: 102900000, guid: f7a7cb9b027add64f924905e233173a1, type: 3}
-    scenePath: Assets/Scenes/StageE.unity
+    scenePath: Assets/Scenes/StageBigJump.unity
+  - sceneAsset: {fileID: 102900000, guid: 59ac82361f691614e8c6862ee9ebb3b3, type: 3}
+    scenePath: Assets/Scenes/StageTurnAround.unity
+  - sceneAsset: {fileID: 102900000, guid: a65cf689b2fa0924197a90ef88668f40, type: 3}
+    scenePath: Assets/Scenes/StageUseBomb.unity
   - sceneAsset: {fileID: 102900000, guid: f2d600d57d0f2b94088a0d27683f4205, type: 3}
-    scenePath: Assets/Scenes/StageF.unity
+    scenePath: Assets/Scenes/StageCorridor.unity
   - sceneAsset: {fileID: 102900000, guid: 7b59aebfc28a3514bb999a6d0d55d354, type: 3}
-    scenePath: Assets/Scenes/StageG.unity
-  - sceneAsset: {fileID: 102900000, guid: 2f7f9d75573b3a24d840b94893e5ec5c, type: 3}
-    scenePath: Assets/Scenes/StageH.unity
+    scenePath: Assets/Scenes/StageCorridorDown.unity

@@ -9,26 +9,29 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 81e34dc926d146d4992d1206223fd8f4
   - enabled: 1
-    path: Assets/Scenes/StageA.unity
+    path: Assets/Scenes/StageOneEnemy.unity
     guid: c54184f96d45b284583c85cb978fbd8a
   - enabled: 1
-    path: Assets/Scenes/StageB.unity
+    path: Assets/Scenes/StageJumpAndDown.unity
     guid: 487e970d79fdc214d8cb4f76d61fe344
   - enabled: 1
-    path: Assets/Scenes/StageC.unity
+    path: Assets/Scenes/StageTwoEnemies.unity
     guid: 2611434f325286e4cac7ac76088eeb44
   - enabled: 1
-    path: Assets/Scenes/StageD.unity
+    path: Assets/Scenes/StageTurnAround.unity
     guid: 59ac82361f691614e8c6862ee9ebb3b3
   - enabled: 1
-    path: Assets/Scenes/StageE.unity
+    path: Assets/Scenes/StageBigJump.unity
     guid: f7a7cb9b027add64f924905e233173a1
   - enabled: 1
-    path: Assets/Scenes/StageF.unity
+    path: Assets/Scenes/StageCorridor.unity
     guid: f2d600d57d0f2b94088a0d27683f4205
   - enabled: 1
-    path: Assets/Scenes/StageG.unity
+    path: Assets/Scenes/StageCorridorDown.unity
     guid: 7b59aebfc28a3514bb999a6d0d55d354
   - enabled: 1
-    path: Assets/Scenes/StageH.unity
+    path: Assets/~Sandbox/StageH.unity
     guid: 2f7f9d75573b3a24d840b94893e5ec5c
+  - enabled: 1
+    path: Assets/Scenes/StageUseBomb.unity
+    guid: a65cf689b2fa0924197a90ef88668f40
