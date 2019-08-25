@@ -22,15 +22,15 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 		}
 	}
 
-	public float TimeRemainingClamped {
+	public float ClampedRemainingTime {
 		get {
 			return Mathf.Max(0, RemainingTime);
 		}
 	}
 
-	public float TimeRemainingRatio {
+	public float RemainingTimeRatio {
 		get {
-			return TimeRemainingClamped / TIME_LIMIT;
+			return ClampedRemainingTime / TIME_LIMIT;
 		}
 	}
 

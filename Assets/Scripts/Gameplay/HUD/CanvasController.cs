@@ -13,6 +13,8 @@ public class CanvasController : MonoBehaviour {
 	CanvasScaler canvasScaler;
 	List<TipIcon> tipIconList = new List<TipIcon>();
 
+	const float REMAINING_TIME_TO_START_FLASHING_EFFECT = 8f;
+
 	public bool ShowingTips {
 		get {
 			return tipIconList.Count > 0;
@@ -53,11 +55,20 @@ public class CanvasController : MonoBehaviour {
 	}
 
 	IEnumerator TimeRefreshRoutine() {
+		StartCoroutine(FlashingTimeEffect());
 		while (true) {
-			timeLabel.text = Mathf.RoundToInt(GameManager.I.TimeRemainingClamped).ToString("00");
+			timeLabel.text = Mathf.RoundToInt(GameManager.I.ClampedRemainingTime).ToString("00");
 			foreach (var slider in timeSliderArray)
-				slider.value = GameManager.I.TimeRemainingRatio;
+				slider.value = GameManager.I.RemainingTimeRatio;
 			yield return new WaitForSeconds(0.14f);
+		}
+	}
+
+	IEnumerator FlashingTimeEffect() {
+		yield return new WaitWhile(() => GameManager.I.RemainingTime > REMAINING_TIME_TO_START_FLASHING_EFFECT);
+		while(true) {
+			timeLabel.gameObject.SetActive(!timeLabel.gameObject.activeSelf);
+			yield return new WaitForSeconds(0.25f);
 		}
 	}
 
