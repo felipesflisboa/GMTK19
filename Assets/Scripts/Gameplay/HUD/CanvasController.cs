@@ -8,6 +8,9 @@ public class CanvasController : MonoBehaviour {
 	[SerializeField] RectTransform tipRectTransform;
 	[SerializeField] Text timeLabel;
 	[SerializeField] Slider[] timeSliderArray;
+	RectTransform rectTransform;
+	Canvas canvas;
+	CanvasScaler canvasScaler;
 	List<TipIcon> tipIconList = new List<TipIcon>();
 
 	public bool ShowingTips {
@@ -16,19 +19,37 @@ public class CanvasController : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Extra value to be used on camera to get the right zoom value.
+	/// </summary>
+	public float HeightScaleRatio {
+		get {
+			return rectTransform.rect.height / canvasScaler.referenceResolution.y;
+		}
+	}
+
 	void Awake() {
-		DontDestroyOnLoad(gameObject);	
+		DontDestroyOnLoad(gameObject);
+		rectTransform = (RectTransform)transform;
+		canvas = GetComponent<Canvas>();
+		canvasScaler = canvas.GetComponent<CanvasScaler>();
 	}
 
 	void OnEnable() {
 		StartCoroutine(TimeRefreshRoutine());
 	}
 
-	float l;
-
 	void Update() {
 		if (!ShowingTips && GameManager.I.currentStage.CanShowTips)
 			StartCoroutine(ShowTipsRoutine(GameManager.I.currentStage.tipSpriteArray));
+		RefreshScalerMatch();
+	}
+
+	void RefreshScalerMatch() {
+		if (rectTransform.rect.width < canvasScaler.referenceResolution.x && canvasScaler.matchWidthOrHeight == 1)
+			canvasScaler.matchWidthOrHeight = 0;
+		if (rectTransform.rect.height < canvasScaler.referenceResolution.y && canvasScaler.matchWidthOrHeight == 0)
+			canvasScaler.matchWidthOrHeight = 1;
 	}
 
 	IEnumerator TimeRefreshRoutine() {

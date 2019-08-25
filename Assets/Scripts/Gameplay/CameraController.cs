@@ -5,6 +5,14 @@ using Gamelogic.Extensions;
 using DG.Tweening;
 
 public class CameraController : MonoBehaviour {
+	public Camera cam { get; private set; }
+	float baseFieldOfView;
+
+	void Awake() {
+		cam = GetComponent<Camera>();
+		baseFieldOfView = cam.fieldOfView;
+	}
+
 	void Start() {
 		ExecuteInitialAnimation(GameManager.INITIAL_SETUP_TIME, 0.1f);
 		RenderSettings.fog = true;
@@ -20,6 +28,7 @@ public class CameraController : MonoBehaviour {
 	}
 
 	void LateUpdate() {
+		cam.fieldOfView = baseFieldOfView * GameManager.I.canvasController.HeightScaleRatio;
 		if (GameManager.I.currentStage.cameraFollow)
 			transform.position = transform.position.WithX(PickCurrentPosX());
 		UpdateFog();
