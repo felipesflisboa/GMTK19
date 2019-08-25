@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/StageTwoEnemies.unity
     guid: 2611434f325286e4cac7ac76088eeb44
   - enabled: 1
-    path: Assets/Scenes/StageTurnAround.unity
+    path: Assets/Scenes/StageByRoof.unity
     guid: 59ac82361f691614e8c6862ee9ebb3b3
   - enabled: 1
     path: Assets/Scenes/StageBigJump.unity
@@ -29,9 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StageCorridorDown.unity
     guid: 7b59aebfc28a3514bb999a6d0d55d354
-  - enabled: 1
-    path: Assets/~Sandbox/StageH.unity
-    guid: 2f7f9d75573b3a24d840b94893e5ec5c
   - enabled: 1
     path: Assets/Scenes/StageUseBomb.unity
     guid: a65cf689b2fa0924197a90ef88668f40
