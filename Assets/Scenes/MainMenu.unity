@@ -206,7 +206,7 @@ Prefab:
       objectReference: {fileID: 2012571276}
     - target: {fileID: 11456508, guid: 0416a2fd66766b648be0197cff5f48b7, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToPlay
+      value: OnPlayClick
       objectReference: {fileID: 0}
     - target: {fileID: 11456508, guid: 0416a2fd66766b648be0197cff5f48b7, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -353,7 +353,7 @@ Prefab:
       objectReference: {fileID: 2012571276}
     - target: {fileID: 11456508, guid: 0416a2fd66766b648be0197cff5f48b7, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToHighScores
+      value: OnHighScoreClick
       objectReference: {fileID: 0}
     - target: {fileID: 11456508, guid: 0416a2fd66766b648be0197cff5f48b7, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -1754,7 +1754,7 @@ Prefab:
       objectReference: {fileID: 2012571276}
     - target: {fileID: 11456508, guid: 0416a2fd66766b648be0197cff5f48b7, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GoToInfo
+      value: OnInfoClick
       objectReference: {fileID: 0}
     - target: {fileID: 11456508, guid: 0416a2fd66766b648be0197cff5f48b7, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -2007,6 +2007,7 @@ GameObject:
   - component: {fileID: 2012571278}
   - component: {fileID: 2012571277}
   - component: {fileID: 2012571276}
+  - component: {fileID: 2012571280}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -2026,7 +2027,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stageData: {fileID: 11400000, guid: 1061490e1f36982499ec812f1d1b1726, type: 2}
-  seClick: {fileID: 8300000, guid: fdffc344830c1e6488291d9036b4622d, type: 3}
+  clickSFX: {fileID: 2012571280}
 --- !u!114 &2012571277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2087,6 +2088,86 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!82 &2012571280
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2012571275}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 568504a2915403447a2cefb6794b47c8, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &2046443353
 GameObject:
   m_ObjectHideFlags: 0
@@ -2190,7 +2271,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 16}
   m_SizeDelta: {x: 1200, y: 421.9}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &2123609237

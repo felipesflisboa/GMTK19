@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PingPongEnemy : MonoBehaviour, IDestructible {
-	[SerializeField] GameObject explosionPrefab;
 	[SerializeField] int axis;
 	[SerializeField] float speed;
 	[SerializeField] float distance;
 	[SerializeField] bool positive = true;
 	Rigidbody rigidBody;
+	bool destroying;
 
 	Vector3 BaseVelocity {
 		get {
@@ -25,7 +26,7 @@ public class PingPongEnemy : MonoBehaviour, IDestructible {
 
 	IEnumerator MainRoutine() {
 		yield return null;
-		while (true) {
+		while (!destroying) {
 			rigidBody.velocity = (positive ? 1 : -1) * BaseVelocity;
 			yield return new WaitForSeconds(distance / speed);
 			positive = !positive;
@@ -39,7 +40,12 @@ public class PingPongEnemy : MonoBehaviour, IDestructible {
 	}
 
 	public void Destroy() {
-		Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-		Destroy(gameObject);
+		if (destroying)
+			return;
+		destroying = true;
+		rigidBody.velocity = Vector3.zero;
+		foreach (Collider col in GetComponentsInChildren<Collider>())
+			col.enabled = false;
+		transform.DOScale(transform.localScale/30f, 0.25f).SetEase(Ease.InOutSine).OnComplete(() => Destroy(gameObject));
 	}
 }

@@ -7,6 +7,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	[SerializeField] GameObject playerPrefab;
 	[SerializeField] GameObject canvasPrefab;
 	[SerializeField] StageData stageData;
+	[SerializeField] AudioSource bgm;
 	public Stage currentStage { get; private set; }
 	public Player player { get; private set; }
 	public CanvasController canvasController { get; private set; }
@@ -108,5 +109,9 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 
 	public void TogglePause() {
 		Time.timeScale = Paused ? 1 : 0;
+		if (Paused)
+			bgm.Pause();
+		else
+			bgm.Play();
 	}
 }

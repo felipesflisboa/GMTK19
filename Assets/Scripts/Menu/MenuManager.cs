@@ -14,7 +14,7 @@ public class MenuManager : SingletonMonoBehaviour<MenuManager> {
 	public static Option nextInitialScreen = Option.Title;
 
 	[SerializeField] StageData stageData;
-	[SerializeField] AudioClip seClick;
+	[SerializeField] AudioSource clickSFX;
 	Option currentPanelOption;
 	MenuPanel[] panelArray;
 
@@ -40,30 +40,29 @@ public class MenuManager : SingletonMonoBehaviour<MenuManager> {
 
 	public void EnablePanel(Option panelOption){
 		currentPanelOption = panelOption;
-		foreach(MenuPanel panel in panelArray){
+		foreach(MenuPanel panel in panelArray)
 			panel.gameObject.SetActive(panel.panelType==panelOption);
-		}
 	}
 
 	void PlayClickSE(){
-		if(seClick!=null)
-			AudioUtil.PlaySE(seClick);
+		if(clickSFX != null)
+			clickSFX.Play();
 	}
 
 #region Buttons
-	public void GoToPlay(){
+	public void OnPlayClick(){
 		PlayClickSE();
 		ScoreListTimedDrawer.lastScore = null;
 		EnablePanel(Option.Loading);
 		this.Invoke(new WaitForEndOfFrame(), ()=> UnityEngine.SceneManagement.SceneManager.LoadScene(stageData.array[0].ScenePath));
 	}
 
-	public void GoToInfo(){
+	public void OnInfoClick(){
 		PlayClickSE();
 		EnablePanel(Option.Info);
 	}
 
-	public void GoToHighScores(){
+	public void OnHighScoreClick(){
 		PlayClickSE();
 		EnablePanel(Option.HighScores);
 	}

@@ -137,3 +137,4 @@ MonoBehaviour:
   canvasPrefab: {fileID: 1062614980014696, guid: 825247b83e08e88429555bbdc9761950,
     type: 2}
   stageData: {fileID: 11400000, guid: 1061490e1f36982499ec812f1d1b1726, type: 2}
+  bgm: {fileID: 82912383181924750}
