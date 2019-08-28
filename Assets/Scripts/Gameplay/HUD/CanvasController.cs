@@ -65,8 +65,9 @@ public class CanvasController : MonoBehaviour {
 	}
 
 	IEnumerator FlashingTimeEffect() {
-		yield return new WaitWhile(() => GameManager.I.RemainingTime > REMAINING_TIME_TO_START_FLASHING_EFFECT);
 		while(true) {
+			if(timeLabel.gameObject.activeSelf)
+				yield return new WaitWhile(() => GameManager.I.RemainingTime > REMAINING_TIME_TO_START_FLASHING_EFFECT);
 			timeLabel.gameObject.SetActive(!timeLabel.gameObject.activeSelf);
 			yield return new WaitForSeconds(0.25f);
 		}
