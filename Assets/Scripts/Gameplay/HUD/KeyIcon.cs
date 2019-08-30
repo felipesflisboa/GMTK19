@@ -11,17 +11,8 @@ public class KeyIcon : MonoBehaviour {
 	[SerializeField] Sprite unavailableSprite;
 	Image icon;
 
-	protected virtual bool Active {
-		get {
-			return activeSprite != null && Input.GetButton(command);
-		}
-	}
-
-	protected virtual bool Unavailable {
-		get {
-			return GameManager.I.player.commandHandler.HasUsed(command);
-		}
-	}
+	protected virtual bool Active => activeSprite != null && Input.GetButton(command);
+	protected virtual bool Unavailable => GameManager.I.player.commandHandler.HasUsed(command);
 
 	void Awake () {
 		icon = GetComponent<Image>();

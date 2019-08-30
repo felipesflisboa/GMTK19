@@ -17,35 +17,11 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	public const float INITIAL_SETUP_TIME = 0.6f;
 	public const float TIME_LIMIT = 60;
 
-	public float RemainingTime {
-		get {
-			return TIME_LIMIT - elapsedTime;
-		}
-	}
-
-	public float ClampedRemainingTime {
-		get {
-			return Mathf.Max(0, RemainingTime);
-		}
-	}
-
-	public float RemainingTimeRatio {
-		get {
-			return ClampedRemainingTime / TIME_LIMIT;
-		}
-	}
-
-	public bool TimeEnded {
-		get {
-			return RemainingTime < 0;
-		}
-	}
-
-	public bool Paused {
-		get {
-			return Time.timeScale == 0;
-		}
-	}
+	public float RemainingTime => TIME_LIMIT - elapsedTime;
+	public float ClampedRemainingTime => Mathf.Max(0, RemainingTime);
+	public float RemainingTimeRatio => ClampedRemainingTime / TIME_LIMIT;
+	public bool TimeEnded => RemainingTime < 0;
+	public bool Paused => Time.timeScale == 0;
 
 	void Awake() {
 		if (FindObjectsOfType<GameManager>().Length > 1) {

@@ -5,9 +5,5 @@ using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
 public class PauseKeyIcon : KeyIcon {
-	protected override bool Active {
-		get {
-			return base.Active || Time.timeScale == 0;
-		}
-	}
+	protected override bool Active => base.Active || Time.timeScale == 0;
 }

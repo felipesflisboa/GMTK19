@@ -4,13 +4,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDestructible {
-	public GameObject missilePrefab;
-	public GameObject bombPrefab;
-	public GameObject sparkPrefab;
-	public Transform missileShootPoint;
-	public Transform bombShootPoint;
-	public Collider mainCollider;
-	public Collider crouchingCollider;
+	[SerializeField] GameObject missilePrefab;
+	[SerializeField] GameObject bombPrefab;
+	[SerializeField] GameObject sparkPrefab;
+	[SerializeField] Transform missileShootPoint;
+	[SerializeField] Transform bombShootPoint;
+	[SerializeField] Collider mainCollider;
+	[SerializeField] Collider crouchingCollider;
 	Rigidbody rigidBody;
 	Animator animator;
 	public CommandHandler commandHandler = new CommandHandler();
@@ -20,11 +20,7 @@ public class Player : MonoBehaviour, IDestructible {
 	const string ANIMATOR_CROUCH_KEY = "Crouching";
 	const string ANIMATOR_RUNNING_KEY = "Running";
 
-	float ValidHorizontalInput {
-		get {
-			return commandHandler.GetButtonValid("Right") ? Input.GetAxis("Right") : -Input.GetAxis("Left");
-		}
-	}
+	float ValidHorizontalInput => commandHandler.GetButtonValid("Right") ? Input.GetAxis("Right") : -Input.GetAxis("Left");
 
 	bool _crouching;
 	bool Crouching {

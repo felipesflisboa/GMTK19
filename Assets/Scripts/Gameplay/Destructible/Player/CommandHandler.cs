@@ -11,11 +11,7 @@ using System.Linq;
 public class CommandHandler {
 	Dictionary<string, bool> used = new Dictionary<string, bool>();
 	
-	public int NewCommandsUsedThisFrame{
-		get {
-			return used.Keys.Count((k) => Input.GetButtonUp(k) && !used[k]);
-		}
-	}
+	public int NewCommandsUsedThisFrame => used.Keys.Count((k) => Input.GetButtonUp(k) && !used[k]);
 
 	public void Setup(string[] keyArray) {
 		foreach (var s in keyArray)

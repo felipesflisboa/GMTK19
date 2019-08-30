@@ -15,20 +15,11 @@ public class CanvasController : MonoBehaviour {
 
 	const float REMAINING_TIME_TO_START_FLASHING_EFFECT = 8f;
 
-	public bool ShowingTips {
-		get {
-			return tipIconList.Count > 0;
-		}
-	}
-
 	/// <summary>
 	/// Extra value to be used on camera to get the right zoom value.
 	/// </summary>
-	public float HeightScaleRatio {
-		get {
-			return rectTransform.rect.height / canvasScaler.referenceResolution.y;
-		}
-	}
+	public float HeightScaleRatio => rectTransform.rect.height / canvasScaler.referenceResolution.y;
+	public bool ShowingTips => tipIconList.Count > 0;
 
 	void Awake() {
 		DontDestroyOnLoad(gameObject);

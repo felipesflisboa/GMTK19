@@ -18,19 +18,12 @@ public class MenuManager : SingletonMonoBehaviour<MenuManager> {
 	Option currentPanelOption;
 	MenuPanel[] panelArray;
 
-	string Version { //remove
-		get {
-			return "1.1";
-		}
-	}
-
 	void Awake() {
 		panelArray = GetComponentsInChildren<MenuPanel>(true);
 	}
 
 	void Start () {
 		EnablePanel(nextInitialScreen);
-		//versionLabel.text = string.Format("V {0}", Application.version).Replace(".",";"); //remove
 		nextInitialScreen = Option.Title;
 	}
 
