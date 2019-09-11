@@ -24,7 +24,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	public bool Paused => Time.timeScale == 0;
 
 	void Awake() {
-		if (FindObjectsOfType<GameManager>().Length > 1) {
+		if (Active && I != this) {
 			Destroy(gameObject);
 			return;
 		}

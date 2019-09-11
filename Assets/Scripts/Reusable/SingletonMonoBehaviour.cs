@@ -6,16 +6,22 @@
 /// To prevent that, add `protected T () {}` to your singleton class.
 /// 
 /// As a note, this is made as MonoBehaviour because we need Coroutines.
-/// Version 1.2
+/// Version 1.2X
 /// </summary>
 public abstract class SingletonMonoBehaviour<T> : MonoBehaviour where T : MonoBehaviour{
 	private static T _instance;
 
-    protected virtual bool DestroyOnLoad{
+	protected virtual bool DestroyOnLoad{
 		get{
 			return true;
 		}
-    }
+	}
+
+	protected static bool Active {
+		get {
+			return _instance != null;
+		}
+	}
 
 	public static T Instance{
 		get{

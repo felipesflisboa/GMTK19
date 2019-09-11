@@ -40,8 +40,7 @@ public class Player : MonoBehaviour, IDestructible {
 		animator = GetComponentInChildren<Animator>();
 		commandHandler.Setup(new[] { "Fire1", "Fire2", "Jump", "Submit", "Left", "Right", "Up", "Down" });
 		this.Invoke(new WaitForSeconds(GameManager.INITIAL_SETUP_TIME), () => started = true);
-		mainCollider.gameObject.SetActive(true);
-		crouchingCollider.gameObject.SetActive(false);
+		Crouching = false;
 	}
 	
 	void Update () {			
@@ -66,7 +65,7 @@ public class Player : MonoBehaviour, IDestructible {
 
 	void UpdateButtonsActions() {
 		if (commandHandler.GetButtonValid("Left") ^ commandHandler.GetButtonValid("Right"))
-			StartMoving();
+			Move();
 		else
 			StopMoving();
 		if (!Crouching && commandHandler.GetButtonDownValid("Up"))
@@ -83,7 +82,7 @@ public class Player : MonoBehaviour, IDestructible {
 			GameManager.I.ResetStage();
 	}
 
-	void StartMoving() {
+	void Move() {
 		rigidBody.rotation = Quaternion.Euler(Vector3.up * (commandHandler.GetButtonValid("Left") ? 270 : 90));
 		rigidBody.MovePosition(rigidBody.position + ValidHorizontalInput * Time.deltaTime * SPEED * Vector3.right);
 		animator.SetBool(ANIMATOR_RUNNING_KEY, true);
