@@ -553,7 +553,7 @@ MonoBehaviour:
   tipSpriteArray:
   - {fileID: 21300000, guid: b47768eeb83fe2c4bbd4b106b890cfb2, type: 3}
   - {fileID: 21300000, guid: 93b77be685f21ed429e95d5a61d28187, type: 3}
-  secondsRemainingToShowTips: 40
+  totalSecondsToShowTips: 22
 --- !u!1 &627338702
 GameObject:
   m_ObjectHideFlags: 0

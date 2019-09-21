@@ -12,6 +12,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	public Player player { get; private set; }
 	public CanvasController canvasController { get; private set; }
 	internal float elapsedTime;
+	internal float totalElapsedTime; // Include resets
 	bool resetting;
 
 	public const float INITIAL_SETUP_TIME = 0.6f;
@@ -73,6 +74,7 @@ public class GameManager : SingletonMonoBehaviour<GameManager> {
 	}
 
 	void Update() {
+		totalElapsedTime += Time.deltaTime;
 		elapsedTime += Time.deltaTime;
 		if (TimeEnded) 
 			DoGameOver();
