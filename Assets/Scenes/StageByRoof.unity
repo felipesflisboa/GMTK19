@@ -282,7 +282,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4056963970635660, guid: 92b9d1f2790299c43a8511e2f2e623a9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.48000014
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 4056963970635660, guid: 92b9d1f2790299c43a8511e2f2e623a9, type: 2}
       propertyPath: m_LocalPosition.y
@@ -805,7 +805,7 @@ MonoBehaviour:
   startPoint: {fileID: 641642369}
   cameraFollow: 0
   tipSpriteArray: []
-  secondsRemainingToShowTips: 0
+  totalSecondsToShowTips: 0
 --- !u!1 &627338702
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +912,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 641642368}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -6.2, y: 1.45, z: 0}
+  m_LocalPosition: {x: -5, y: 1.45, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 554742518}
@@ -1841,7 +1841,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4056963970635660, guid: 92b9d1f2790299c43a8511e2f2e623a9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -4.36
+      value: -3.36
       objectReference: {fileID: 0}
     - target: {fileID: 4056963970635660, guid: 92b9d1f2790299c43a8511e2f2e623a9, type: 2}
       propertyPath: m_LocalPosition.y
@@ -2066,7 +2066,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4056963970635660, guid: 92b9d1f2790299c43a8511e2f2e623a9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 5.07
+      value: 5.5
       objectReference: {fileID: 0}
     - target: {fileID: 4056963970635660, guid: 92b9d1f2790299c43a8511e2f2e623a9, type: 2}
       propertyPath: m_LocalPosition.y
